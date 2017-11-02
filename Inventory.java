@@ -1,5 +1,9 @@
 package ch1;
 
+import ch1.enums.Builder;
+import ch1.enums.Type;
+import ch1.enums.Wood;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,11 +16,11 @@ public class Inventory {
     }
     public void addGuitar(String serialNumber,
                           double price,
-                          String builder,
+                          Builder builder,
                           String model,
-                          String type,
-                          String backWood,
-                          String topWood){
+                          Type type,
+                          Wood backWood,
+                          Wood topWood){
 //        Guitar guitar = new Guitar(serialNumber,
 //                price,
 //                builder,
@@ -55,9 +59,7 @@ public class Inventory {
             
             // Ignore serial number since that's unique
             // Ignore price since that's unique
-            String builder = searchGuitar.getBuilder();
-            if ((builder != null) && (builder != "") && 
-                    (!builder.equals(guitar.getBuilder())) ){
+            if ((searchGuitar.getBuilder()) != guitar.getBuilder()) {
                 continue;
             }
             String model = searchGuitar.getModel();
@@ -65,19 +67,13 @@ public class Inventory {
                     (!model.equals(guitar.getModel())) ){
                 continue;
             }
-            String type = searchGuitar.getType();
-            if ((type != null) && (type != "") &&
-                    (!type.equals(guitar.getType())) ){
+            if ((searchGuitar.getType()) != guitar.getType()) {
                 continue;
             }
-            String backwood = searchGuitar.getBackWood();
-            if ((backwood != null) && (backwood != "") &&
-                    (!backwood.equals(guitar.getBackWood())) ){
+            if ((searchGuitar.getBackWood()) != guitar.getBackWood()) {
                 continue;
             }
-            String topwood = searchGuitar.getTopWood();
-            if ((topwood != null) && (topwood != "") &&
-                    (!topwood.equals(guitar.getTopWood())) ){
+            if ((searchGuitar.getTopWood()) != guitar.getTopWood()) {
                 continue;
             }
             return guitar; // all condition match, so interrupt search method and return this guitar
