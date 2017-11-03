@@ -44,7 +44,8 @@ public class Inventory {
 //        } // close for loop
         return null;
     }
-    public Guitar search(Guitar searchGuitar){
+    public List<Guitar> search(Guitar searchGuitar){
+        List<Guitar> matchGuitars = new LinkedList<Guitar>();
         for (Guitar guitar :
                 guitars) {
             
@@ -54,7 +55,7 @@ public class Inventory {
                 continue;
             }
             String model = searchGuitar.getModel();
-            if ((model != null) && (model != "") &&
+            if ((model != null) && (model.equals("")) &&
                     (!model.equals(guitar.getModel())) ){
                 continue;
             }
@@ -67,10 +68,11 @@ public class Inventory {
             if ((searchGuitar.getTopWood()) != guitar.getTopWood()) {
                 continue;
             }
-            return guitar; //find a guitar equals(all if fail) searchGuitar ,
-            // so interrupt search method and return this guitar
-        } // close for loop
+            matchGuitars.add(guitar);
+            //find a guitar equals(all if fail) searchGuitar
+        } // close foreach loop
+        return matchGuitars;
+        // Interrupt search method and return matchGuitars(maybe empty List)
 
-        return null; // if all guitar condition fail, interrupt search method and return null
     } // close search method
 }
