@@ -15,6 +15,8 @@ public class Inventory {
     }
     public void addGuitar(String serialNumber,
                           double price,
+//                          GuitarSpec spec
+//                          ){
                           Builder builder,
                           String model,
                           Type type,
@@ -22,11 +24,16 @@ public class Inventory {
                           Wood topWood){
         guitars.add(new Guitar(serialNumber,
                 price,
-                builder,
-                model,
-                type,
-                backWood,
-                topWood));
+                new GuitarSpec(builder,
+                        model,
+                        type,
+                        backWood,
+                        topWood)));
+//                builder,
+//                model,
+//                type,
+//                backWood,
+//                topWood));
     }
     public Guitar getGuitar(String serialNumber){
         for (Guitar guitar :
@@ -44,32 +51,33 @@ public class Inventory {
 //        } // close for loop
         return null;
     }
-    public List<Guitar> search(Guitar searchGuitar){
+    public List<Guitar> search(GuitarSpec searchGuitarSpec){
         List<Guitar> matchGuitars = new LinkedList<Guitar>();
         for (Guitar guitar :
                 guitars) {
             
             // Ignore serial number since that's unique
             // Ignore price since that's unique
-            if ((searchGuitar.getBuilder()) != guitar.getBuilder()) {
+            GuitarSpec guitarSpec = guitar.getSpec();
+            if ((searchGuitarSpec.getBuilder()) != guitarSpec.getBuilder()) {
                 continue;
             }
-            String model = searchGuitar.getModel();
+            String model = searchGuitarSpec.getModel();
             if ((model != null) && (model.equals("")) &&
-                    (!model.equals(guitar.getModel())) ){
+                    (!model.equals(guitarSpec.getModel().toLowerCase())) ){
                 continue;
             }
-            if ((searchGuitar.getType()) != guitar.getType()) {
+            if ((searchGuitarSpec.getType()) != guitarSpec.getType()) {
                 continue;
             }
-            if ((searchGuitar.getBackWood()) != guitar.getBackWood()) {
+            if ((searchGuitarSpec.getBackWood()) != guitarSpec.getBackWood()) {
                 continue;
             }
-            if ((searchGuitar.getTopWood()) != guitar.getTopWood()) {
+            if ((searchGuitarSpec.getTopWood()) != guitarSpec.getTopWood()) {
                 continue;
             }
             matchGuitars.add(guitar);
-            //find a guitar equals(all if fail) searchGuitar
+            //find a guitarSpec equals(all if fail) searchGuitarSpec
         } // close foreach loop
         return matchGuitars;
         // Interrupt search method and return matchGuitars(maybe empty List)

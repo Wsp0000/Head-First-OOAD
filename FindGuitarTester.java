@@ -13,8 +13,7 @@ public class FindGuitarTester {
         Inventory inventory = new Inventory();
         initializeInventory(inventory);
 
-        Guitar whatErinLikes = new Guitar(  "",
-                0,
+        GuitarSpec whatErinLikes = new GuitarSpec(
                 Builder.FENDER,
                 "Stratocastor",
                 Type.ELECTRIC,
@@ -27,27 +26,29 @@ public class FindGuitarTester {
             System.out.println("Erin, you might like this ");
             for (Guitar guitar :
                     matchingGuitars) {
+                GuitarSpec guitarSpec = guitar.getSpec();
                 System.out.println("  We have a " +
-                        guitar.getBuilder() + " " +
-                        guitar.getModel() + " " +
-                        guitar.getType() + " guitar:\n     " +
-                        guitar.getBackWood() + " back and sides,\n     " +
-                        guitar.getTopWood() + " top.\n  You can have it for only $" +
+                        guitarSpec.getBuilder() + " " +
+                        guitarSpec.getModel() + " " +
+                        guitarSpec.getType() + " guitarSpec:\n     " +
+                        guitarSpec.getBackWood() + " back and sides,\n     " +
+                        guitarSpec.getTopWood() + " top.\n  You can have it for only $" +
                         guitar.getPrice() + " !\n ---");
             }
         } else {
             System.out.println("Sorry, Erin, we have nothing for you.");
         }
-
+        // test Serial search
         String whatWSPLikesWithSerialNumber = "11277";
         Guitar matchinGuitarWSP = inventory.getGuitar(whatWSPLikesWithSerialNumber);
         if (matchinGuitarWSP != null) {
+            GuitarSpec guitarSpec = matchinGuitarWSP.getSpec();
             System.out.println("WSP, you search serialNumber:"+whatWSPLikesWithSerialNumber+" "+
-                    matchinGuitarWSP.getBuilder() + " " +
-                    matchinGuitarWSP.getModel() + " " +
-                    matchinGuitarWSP.getType() + " " +
-                    matchinGuitarWSP.getBackWood() + " " +
-                    matchinGuitarWSP.getTopWood() + " " +
+                    guitarSpec.getBuilder() + " " +
+                    guitarSpec.getModel() + " " +
+                    guitarSpec.getType() + " " +
+                    guitarSpec.getBackWood() + " " +
+                    guitarSpec.getTopWood() + " " +
                     matchinGuitarWSP.getPrice() + " ");
         } else {
             System.out.println("Sorry, WSP, we have nothing for you.(serialNumber:"
