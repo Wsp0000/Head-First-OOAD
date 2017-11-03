@@ -1,17 +1,22 @@
 package ch1;
 
+import ch1.enums.*;
+
 public class Guitar {
 
-    private String SerialNumber, builder, model, type, backWood, topWood;
+    private String SerialNumber, model;
+    private Builder builder;
+    private Type type;
+    private Wood backWood, topWood;
     private double price;
 
     public Guitar(String serialNumber,
                   double price,
-                  String builder,
+                  Builder builder,
                   String model,
-                  String type,
-                  String backWood,
-                  String topWood
+                  Type type,
+                  Wood backWood,
+                  Wood topWood
                   ) {
         SerialNumber = serialNumber;
         this.builder = builder;
@@ -28,21 +33,21 @@ public class Guitar {
 
     public String getSerialNumber() {return SerialNumber;}
 
-    public String getBuilder() {return builder;}
+    public Builder getBuilder() {return builder;}
 
     public String getModel() {
         return model;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public String getBackWood() {
+    public Wood getBackWood() {
         return backWood;
     }
 
-    public String getTopWood() {
+    public Wood getTopWood() {
         return topWood;
     }
 

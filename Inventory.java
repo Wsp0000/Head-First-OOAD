@@ -4,7 +4,6 @@ import ch1.enums.Builder;
 import ch1.enums.Type;
 import ch1.enums.Wood;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,14 +20,6 @@ public class Inventory {
                           Type type,
                           Wood backWood,
                           Wood topWood){
-//        Guitar guitar = new Guitar(serialNumber,
-//                price,
-//                builder,
-//                model,
-//                type,
-//                backWood,
-//                topWood);
-//        guitars.add(guitar);
         guitars.add(new Guitar(serialNumber,
                 price,
                 builder,
@@ -76,8 +67,10 @@ public class Inventory {
             if ((searchGuitar.getTopWood()) != guitar.getTopWood()) {
                 continue;
             }
-            return guitar; // all condition match, so interrupt search method and return this guitar
+            return guitar; //find a guitar equals(all if fail) searchGuitar ,
+            // so interrupt search method and return this guitar
         } // close for loop
-        return null; // all condition fail, so interrupt search method and return null
+
+        return null; // if all guitar condition fail, interrupt search method and return null
     } // close search method
 }
