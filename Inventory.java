@@ -48,7 +48,7 @@ public class Inventory {
         return null;
     }
     public List<Guitar> search(GuitarSpec searchGuitarSpec){
-        List<Guitar> matchGuitars = new LinkedList<Guitar>();
+        List<Guitar> matchGuitars = new LinkedList<>();
         for (Guitar guitar :
                 guitars) {
             
