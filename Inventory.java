@@ -15,25 +15,21 @@ public class Inventory {
     }
     public void addGuitar(String serialNumber,
                           double price,
-//                          GuitarSpec spec
-//                          ){
-                          Builder builder,
-                          String model,
-                          Type type,
-                          Wood backWood,
-                          Wood topWood){
+                          GuitarSpec spec
+                          ){
+//                          Builder builder,
+//                          String model,
+//                          Type type,
+//                          Wood backWood,
+//                          Wood topWood){
         guitars.add(new Guitar(serialNumber,
                 price,
-                new GuitarSpec(builder,
-                        model,
-                        type,
-                        backWood,
-                        topWood)));
-//                builder,
-//                model,
-//                type,
-//                backWood,
-//                topWood));
+//                new GuitarSpec(builder,
+//                        model,
+//                        type,
+//                        backWood,
+//                        topWood)));
+                spec));
     }
     public Guitar getGuitar(String serialNumber){
         for (Guitar guitar :
@@ -59,24 +55,33 @@ public class Inventory {
             // Ignore serial number since that's unique
             // Ignore price since that's unique
             GuitarSpec guitarSpec = guitar.getSpec();
-            if ((searchGuitarSpec.getBuilder()) != guitarSpec.getBuilder()) {
-                continue;
+
+            if (guitarSpec.matches(searchGuitarSpec)) {
+                matchGuitars.add(guitar);
+                // test sout
+                System.out.println("test GuitarSpec matches method start");
+                System.out.println("found a guitar serialNumber:"+guitar.getSerialNumber());
+                System.out.println("test GuitarSpec matches method end");
             }
-            String model = searchGuitarSpec.getModel();
-            if ((model != null) && (model.equals("")) &&
-                    (!model.equals(guitarSpec.getModel().toLowerCase())) ){
-                continue;
-            }
-            if ((searchGuitarSpec.getType()) != guitarSpec.getType()) {
-                continue;
-            }
-            if ((searchGuitarSpec.getBackWood()) != guitarSpec.getBackWood()) {
-                continue;
-            }
-            if ((searchGuitarSpec.getTopWood()) != guitarSpec.getTopWood()) {
-                continue;
-            }
-            matchGuitars.add(guitar);
+            // old
+//            if ((searchGuitarSpec.getBuilder()) != guitarSpec.getBuilder()) {
+//                continue;
+//            }
+//            String model = searchGuitarSpec.getModel();
+//            if ((model != null) && (model.equals("")) &&
+//                    (!model.equals(guitarSpec.getModel().toLowerCase())) ){
+//                continue;
+//            }
+//            if ((searchGuitarSpec.getType()) != guitarSpec.getType()) {
+//                continue;
+//            }
+//            if ((searchGuitarSpec.getBackWood()) != guitarSpec.getBackWood()) {
+//                continue;
+//            }
+//            if ((searchGuitarSpec.getTopWood()) != guitarSpec.getTopWood()) {
+//                continue;
+//            }
+//            matchGuitars.add(guitar);
             //find a guitarSpec equals(all if fail) searchGuitarSpec
         } // close foreach loop
         return matchGuitars;
